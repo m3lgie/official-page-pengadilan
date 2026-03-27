@@ -1,0 +1,41 @@
+# ── Environment ────────────────────────────────
+.env
+*.env.local
+*.env.production
+
+# ── Node / Bun ─────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ── Build Output ───────────────────────────────
+dist/
+.output/
+.astro/
+apps/web-portal/dist/
+apps/api-server/dist/
+
+# ── Database ───────────────────────────────────
+*.sql
+*.sql.gz
+
+# ── Uploads (statis, tidak masuk repo) ─────────
+public/uploads/
+backups/
+
+# ── Logs ───────────────────────────────────────
+*.log
+logs/
+
+# ── OS Files ───────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── IDE ────────────────────────────────────────
+.vscode/settings.json
+.idea/
+
+# ── SSL Certificates ───────────────────────────
+infra/nginx/ssl/*.pem
+infra/nginx/ssl/*.crt
+infra/nginx/ssl/*.key
