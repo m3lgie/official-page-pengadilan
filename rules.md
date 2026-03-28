@@ -1,4 +1,5 @@
 # RULES.MD — Panduan Komando Pembangunan Sistem Website Pengadilan 2026
+
 # The Speed Stack: Astro + Bun + Elysia + Drizzle + PostgreSQL + Redis
 
 > Dokumen ini adalah **hukum tertinggi** dalam pembangunan sistem ini.
@@ -9,25 +10,28 @@
 
 ## 📚 REFERENSI DOKUMEN (Otak Agen — Wajib Diketahui)
 
-Semua keputusan teknis didasarkan pada 14 dokumen berikut di folder `.agent/docs/`:
+Semua keputusan teknis didasarkan pada 18 dokumen berikut di folder `.agent/docs/`:
 
-| No | File | Isi Kunci |
-|---|---|---|
-| 01 | `01_Analisa_Juknis_2026.md` | Ketentuan SK DJU 127/2026: menu wajib, aksesibilitas, konten PT vs PN |
-| 02 | `02_Standar_Portal_Pemerintah.md` | HA, SEO, WAF, Workflow Maker-Checker-Approver, SSO |
-| 03 | `03_Frontend_Astro.md` | Page Map 50+ halaman, komponen React Island, Tailwind + Shadcn/UI |
-| 04 | `04_Backend_Bun_Elysia.md` | Seluruh endpoint API, middleware stack, Redis cache strategy |
-| 05 | `05_Struktur_Folder.md` | Hierarki monorepo: `/apps`, `/packages`, `/infra` |
-| 06 | `06_Spek_Admin_Panel.md` | RBAC, 2FA, modul CMS, disability support, audit trail |
-| 07 | `07_Admin_Panel_Deep_Dive.md` | Form builder, theme engine, script injection |
-| 08 | `08_Manajemen_Layout_Dinamis.md` | Block-based homepage, sidebar widgets, RSS, IKM widget |
-| 09 | `09_Aturan_Pengembangan.md` | Conventional commits, no placeholders, JSDoc, image optimization |
-| 10 | `10_Panduan_Setup.md` | Instalasi Docker 3-langkah untuk setiap satuan kerja |
-| 11 | `11_Rencana_Implementasi.md` | 4 fase milestone pembangunan |
-| 12 | `12_Strategi_Backup_Keamanan.md` | SOP backup otomatis + manual trigger + restore playbook |
-| 13 | `13_Skema_Database_Drizzle.md` | **Blueprint 14 Domain, 50+ Tabel** — referensi mutlak schema.ts |
-| 14 | `14_Standar_Layout_Template.md` | Wireframe visual Juknis: header, nav, hero, 2-kolom, footer |
-| 15 | `15_Responsive_Design.md` | Breakpoint system, perilaku layout per perangkat, mobile components, testing |
+| No  | File                                  | Isi Kunci                                                                    |
+| --- | ------------------------------------- | ---------------------------------------------------------------------------- |
+| 01  | `01_Analisa_Juknis_2026.md`           | Ketentuan SK DJU 127/2026: menu wajib, aksesibilitas, konten PT vs PN        |
+| 02  | `02_Standar_Portal_Pemerintah.md`     | HA, SEO, WAF, Workflow Maker-Checker-Approver, SSO                           |
+| 03  | `03_Frontend_Astro.md`                | Page Map 50+ halaman, komponen React Island, Tailwind + Shadcn/UI            |
+| 04  | `04_Backend_Bun_Elysia.md`            | Seluruh endpoint API, middleware stack, Redis cache strategy                 |
+| 05  | `05_Struktur_Folder.md`               | Hierarki monorepo: `/apps`, `/packages`, `/infra`                            |
+| 06  | `06_Spek_Admin_Panel.md`              | RBAC, 2FA, modul CMS, disability support, audit trail                        |
+| 07  | `07_Admin_Panel_Deep_Dive.md`         | Form builder, theme engine, script injection                                 |
+| 08  | `08_Manajemen_Layout_Dinamis.md`      | Block-based homepage, sidebar widgets, RSS, IKM widget                       |
+| 09  | `09_Aturan_Pengembangan.md`           | Conventional commits, no placeholders, JSDoc, image optimization             |
+| 10  | `10_Panduan_Setup.md`                 | Instalasi Docker 3-langkah untuk setiap satuan kerja                         |
+| 11  | `11_Rencana_Implementasi.md`          | 4 fase milestone pembangunan                                                 |
+| 12  | `12_Strategi_Backup_Keamanan.md`      | SOP backup otomatis + manual trigger + restore playbook                      |
+| 13  | `13_Skema_Database_Drizzle.md`        | **Blueprint 14 Domain, 50+ Tabel** — referensi mutlak schema.ts              |
+| 14  | `14_Standar_Layout_Template.md`       | Wireframe visual Juknis: header, nav, hero, 2-kolom, footer                  |
+| 15  | `15_Responsive_Design.md`             | Breakpoint system, perilaku layout per perangkat, mobile components, testing |
+| 16  | `16_Manajemen_Struktur_Organisasi.md` | Hierarki jabatan PT/PN, filter dinamis posisi jabatan                        |
+| 17  | `17_Analisis_Kendala_Mitigasi.md`     | Bottlenecks: React Island Hydration, Type-Safety dinamis, Cache Invalidation |
+| 18  | `18_Arsitektur_Keamanan_Tinggi.md`    | Perisai Nginx, Dual JWT, Proteksi Web Shell (MIME bytes), SSRF               |
 
 ---
 
@@ -47,6 +51,7 @@ BAHASA    : TypeScript STRICT mode di semua file .ts/.tsx/.astro
 ```
 
 **Dilarang keras menggunakan:**
+
 - ❌ `npm`, `yarn`, `pnpm` — gunakan **`bun`** saja
 - ❌ `any` type di TypeScript — gunakan type eksplisit atau TypeBox schema
 - ❌ Vanilla/custom CSS jika solusi ada di Tailwind/Shadcn
@@ -75,6 +80,7 @@ BAHASA    : TypeScript STRICT mode di semua file .ts/.tsx/.astro
 > Referensi mutlak: `13_Skema_Database_Drizzle.md` — **14 Domain, 50+ Tabel**
 
 ### Domain yang Harus Ada (Jangan ada yang terlewat):
+
 1. **Pengguna & Otorisasi** — `users`, `public_accounts`
 2. **Keamanan** — `audit_logs`
 3. **Konfigurasi Global** — `global_configs` (singleton)
@@ -91,6 +97,7 @@ BAHASA    : TypeScript STRICT mode di semua file .ts/.tsx/.astro
 14. **Galeri Media** — `galleries`, `gallery_items`
 
 ### Aturan Drizzle:
+
 - Gunakan `pgTable()` dan `pgEnum()` dari `drizzle-orm/pg-core`
 - Semua UUID menggunakan `uuid('id').defaultRandom().primaryKey()`
 - Semua tabel wajib memiliki `created_at: timestamp().defaultNow()`
@@ -104,6 +111,7 @@ BAHASA    : TypeScript STRICT mode di semua file .ts/.tsx/.astro
 > Referensi: `03_Frontend_Astro.md` dan `14_Standar_Layout_Template.md`
 
 ### Struktur Layout (Wajib sesuai Wireframe Juknis):
+
 ```
 Header: Logo + Nama PT/PN (dinamis) + Badge WBK/WBBM
 NavBar: 7 menu wajib (Beranda, Tentang, Layanan Publik, Layanan Hukum, Berita, Hubungi, RB)
@@ -113,11 +121,13 @@ Footer: Copyright © tahun + Nama Pengadilan (dinamis)
 ```
 
 ### Halaman Wajib Ada (50+ halaman — lihat Page Map di 03_Frontend_Astro.md):
+
 - Semua halaman publik, halaman `/akun/` (masyarakat), dan halaman `/admin/`
 - Pastikan rute `/admin/ampuh` → 9 kriteria (BUKAN area)
 - Pastikan rute `/admin/zi` → 6 area ZI
 
 ### Aturan Komponen:
+
 - `.astro` files → Semua halaman statis publik, layout, header, footer
 - `.tsx` files (React Island) → HANYA komponen interaktif:
   - `<DragDropLayoutEditor />` — layout builder
@@ -133,6 +143,7 @@ Footer: Copyright © tahun + Nama Pengadilan (dinamis)
   - `<SiteStatsChart />` — statistik pengunjung
 
 ### Aturan SEO (Wajib setiap halaman):
+
 - `<title>` unik dan deskriptif per halaman
 - `<meta name="description">` maks 160 karakter
 - `<meta property="og:image">` untuk halaman berita
@@ -140,6 +151,7 @@ Footer: Copyright © tahun + Nama Pengadilan (dinamis)
 - Sitemap XML otomatis via `@astrojs/sitemap`
 
 ### Aturan Laporan (`display_mode`):
+
 - `INLINE_VIEWER` → render `<iframe>` PDF atau `<PDFViewer>` Shadcn
 - `DOWNLOAD_BUTTON` → `<a href="..." download>` dengan ukuran file
 - `PREVIEW_CARD` → card thumbnail + judul + CTA
@@ -152,10 +164,12 @@ Footer: Copyright © tahun + Nama Pengadilan (dinamis)
 > Referensi lengkap: `15_Responsive_Design.md`
 
 ### Pendekatan: Mobile First
+
 - Tulis style default untuk mobile, override untuk layar lebih besar
 - Gunakan **Tailwind CSS Breakpoints**: `sm` (480px), `md` (768px), `lg` (1024px), `xl` (1280px)
 
 ### Perilaku Wajib per Elemen:
+
 - **Navbar**: Mobile → Hamburger ☰ + Drawer | Desktop → Full horizontal
 - **Hero Slider**: Mobile tinggi 200px | Desktop 450-500px
 - **Quick Links**: Mobile `grid-cols-2` | Desktop `grid-cols-5` (sesuai wireframe Juknis)
@@ -165,15 +179,18 @@ Footer: Copyright © tahun + Nama Pengadilan (dinamis)
 - **Admin Sidebar**: Mobile icon-only + drawer | Desktop full 250px
 
 ### Touch & Interaction:
+
 - Touch target minimum **44x44px** (WCAG 2.5.5)
 - Slider mendukung **swipe gesture** di mobile
 - Tidak ada horizontal scroll di mobile (`overflow-x: hidden`)
 - Hover effect hanya di non-touch device (`@media (hover: hover)`)
 
 ### Lighthouse Mobile Target:
+
 - Performance ≥ 90, Accessibility 100, SEO 100
 
 ### Komponen Mobile Khusus (React Island):
+
 - `<MobileNav />` — hamburger + drawer navigasi
 - `<HeroSlider />` — swipe gesture + dots pagination
 
@@ -184,6 +201,7 @@ Footer: Copyright © tahun + Nama Pengadilan (dinamis)
 > Referensi: `04_Backend_Bun_Elysia.md`
 
 ### Middleware Stack (Urutan Wajib):
+
 1. `rateLimiter` — 100 req/menit per IP
 2. `authGuard` — validasi JWT admin
 3. `publicAuthGuard` — validasi JWT masyarakat
@@ -192,19 +210,21 @@ Footer: Copyright © tahun + Nama Pengadilan (dinamis)
 6. `uriValidator` — validasi format URL di semua field iframe
 
 ### Endpoint Wajib Ada:
+
 - Semua 15+ grup endpoint sesuai `04_Backend_Bun_Elysia.md`
 - `/api/global/config` → Wajib di-cache Redis 5 menit
 - `/api/ampuh/kriteria` → Response menggunakan kata "kriteria" bukan "area"
 - `/api/backup/trigger` → Hanya SUPERADMIN, jalankan `Bun.$` pg_dump
 
 ### Redis Cache Strategy:
-| Endpoint | TTL | Invalidasi |
-|---|---|---|
-| `/api/global/config` | 5 menit | PATCH /global/config |
-| `/api/layout/homepage` | 2 menit | PATCH /layout/blocks |
-| `/api/layout/menus` | 10 menit | PATCH /layout/menus |
-| RSS Feed | 30 menit | Cronjob |
-| List berita | 1 menit | POST/PATCH /posts |
+
+| Endpoint               | TTL      | Invalidasi           |
+| ---------------------- | -------- | -------------------- |
+| `/api/global/config`   | 5 menit  | PATCH /global/config |
+| `/api/layout/homepage` | 2 menit  | PATCH /layout/blocks |
+| `/api/layout/menus`    | 10 menit | PATCH /layout/menus  |
+| RSS Feed               | 30 menit | Cronjob              |
+| List berita            | 1 menit  | POST/PATCH /posts    |
 
 ---
 
@@ -213,11 +233,13 @@ Footer: Copyright © tahun + Nama Pengadilan (dinamis)
 > Referensi: `06_Spek_Admin_Panel.md` dan `07_Admin_Panel_Deep_Dive.md`
 
 ### RBAC Roles:
+
 - **SUPERADMIN**: Kendali penuh, backup manual, user management, global config
 - **EDITOR (PPID)**: Berita, laporan, galeri — dengan workflow review
 - **ADMIN_LAYANAN**: Tiket masyarakat, jadwal, PTSP
 
 ### Fitur Wajib Admin:
+
 1. **Theme Engine**: Ubah `primary_color` → langsung berubah via CSS Variables
 2. **Layout Builder**: Drag & drop urutan blok homepage (`layout_blocks`)
 3. **Menu Builder**: Tree editor multi-level `navigation_menus` dengan `visibility` PT/PN
@@ -228,6 +250,7 @@ Footer: Copyright © tahun + Nama Pengadilan (dinamis)
 8. **Audit Trail**: Tabel `audit_logs` — semua mutasi tercatat dengan `payload_before/after`
 
 ### Workflow Konten (Maker-Checker-Approver):
+
 ```
 Staff membuat → status: DRAFT
     ↓
@@ -278,6 +301,7 @@ status: REJECTED + rejection_reason wajib diisi
 > Referensi: `10_Panduan_Setup.md` dan `12_Strategi_Backup_Keamanan.md`
 
 ### Stack Docker (6 Container):
+
 ```
 nginx        → Reverse proxy + file statis uploads
 web-portal   → Astro SSR (internal port 4000)
@@ -288,12 +312,14 @@ pg-backup    → Auto backup harian 02:00 AM
 ```
 
 ### Aturan Volume (WAJIB Named Volume):
+
 - `pengadilan_pgdata` → Data PostgreSQL
 - `pengadilan_uploads` → File upload laporan/foto
 - `pengadilan_backups` → File dump .sql.gz
 - `pengadilan_redisdata` → Persistensi Redis
 
 ### Cara Deploy Satuan Kerja Baru (3 Langkah):
+
 ```bash
 1. cp .env.example .env && nano .env   # Isi SITE_URL, DB_PASSWORD, JWT_SECRET
 2. docker compose up -d --build        # Build + jalankan semua container
@@ -301,6 +327,7 @@ pg-backup    → Auto backup harian 02:00 AM
 ```
 
 ### Setelah Deploy — Konfigurasi via Admin Panel:
+
 - Set mode PT/PN → masuk `/admin/pengaturan`
 - Upload logo, isi nama pengadilan, kelas pengadilan
 - Set warna primer (hex), URL SIPP, e-Court, dll
@@ -313,6 +340,7 @@ pg-backup    → Auto backup harian 02:00 AM
 > Referensi: `09_Aturan_Pengembangan.md`
 
 ### Git Workflow:
+
 - Branch: `main` (production), `develop` (staging), `feature/xyz` (dev)
 - **Conventional Commits** WAJIB:
   - `feat:` → fitur baru
@@ -322,6 +350,7 @@ pg-backup    → Auto backup harian 02:00 AM
   - `chore:` → konfigurasi/setup
 
 ### Kode:
+
 - Semua fungsi Elysia route wajib memiliki **JSDoc** params & return type
 - Semua React Island wajib memiliki **PropTypes via TypeBox schema**
 - Dilarang gambar PNG/JPG mentah di production → konversi ke **WebP** via `astro:assets`
@@ -329,6 +358,7 @@ pg-backup    → Auto backup harian 02:00 AM
 - Data simulasi WAJIB menggunakan contoh nyata hukum Indonesia
 
 ### Environment:
+
 - Semua secret disimpan di `.env` — **jangan commit `.env` ke Git**
 - `.env.example` diupdate setiap ada variabel baru
 - File `.gitignore` WAJIB mencakup: `.env`, `node_modules/`, `dist/`, `*.sql.gz`
@@ -356,19 +386,19 @@ pg-backup    → Auto backup harian 02:00 AM
 
 ### Kapan Wajib Update Dokumen:
 
-| Situasi | Dokumen yang Diupdate |
-|---|---|
-| Ditemukan terminologi resmi baru | File MD yang menyebut terminologi tersebut |
-| Skema database butuh tabel/kolom baru | `13_Skema_Database_Drizzle.md` |
-| API endpoint baru ditambahkan | `04_Backend_Bun_Elysia.md` |
-| Halaman/rute baru ditambahkan | `03_Frontend_Astro.md` |
-| Fitur Admin Panel baru | `06_Spek_Admin_Panel.md` atau `07_Admin_Panel_Deep_Dive.md` |
-| Perubahan keamanan/backup | `12_Strategi_Backup_Keamanan.md` |
-| Perubahan prosedur instalasi | `10_Panduan_Setup.md` |
-| Aturan coding baru disepakati | `09_Aturan_Pengembangan.md` |
-| Layout/wireframe berubah | `14_Standar_Layout_Template.md` |
-| Interpretasi baru dari Juknis SK DJU | `01_Analisa_Juknis_2026.md` |
-| Aturan baru | `rules.md` itu sendiri |
+| Situasi                               | Dokumen yang Diupdate                                       |
+| ------------------------------------- | ----------------------------------------------------------- |
+| Ditemukan terminologi resmi baru      | File MD yang menyebut terminologi tersebut                  |
+| Skema database butuh tabel/kolom baru | `13_Skema_Database_Drizzle.md`                              |
+| API endpoint baru ditambahkan         | `04_Backend_Bun_Elysia.md`                                  |
+| Halaman/rute baru ditambahkan         | `03_Frontend_Astro.md`                                      |
+| Fitur Admin Panel baru                | `06_Spek_Admin_Panel.md` atau `07_Admin_Panel_Deep_Dive.md` |
+| Perubahan keamanan/backup             | `12_Strategi_Backup_Keamanan.md`                            |
+| Perubahan prosedur instalasi          | `10_Panduan_Setup.md`                                       |
+| Aturan coding baru disepakati         | `09_Aturan_Pengembangan.md`                                 |
+| Layout/wireframe berubah              | `14_Standar_Layout_Template.md`                             |
+| Interpretasi baru dari Juknis SK DJU  | `01_Analisa_Juknis_2026.md`                                 |
+| Aturan baru                           | `rules.md` itu sendiri                                      |
 
 ### Cara Update yang Benar:
 
@@ -380,6 +410,7 @@ pg-backup    → Auto backup harian 02:00 AM
 ```
 
 ### Contoh Nyata yang Sudah Terjadi:
+
 - ✅ User koreksi: AMPUH pakai "Kriteria" bukan "Area" → update `13_Skema_Database_Drizzle.md` + `03_Frontend_Astro.md` + `04_Backend_Bun_Elysia.md`
 - ✅ Riset: Docker butuh container Nginx → update `docker-compose.yml` + `10_Panduan_Setup.md`
 - ✅ Celah teridentifikasi: `media_assets` belum didefinisikan → update `13_Skema_Database_Drizzle.md`
@@ -407,5 +438,5 @@ pg-backup    → Auto backup harian 02:00 AM
 
 ---
 
-*Rules ini adalah dokumen hidup. Setiap penambahan fitur besar yang mengubah arsitektur wajib diikuti dengan update rules.md ini.*
-*Terakhir diperbarui: 2026-03-27 | Versi: 1.1*
+_Rules ini adalah dokumen hidup. Setiap penambahan fitur besar yang mengubah arsitektur wajib diikuti dengan update rules.md ini._
+_Terakhir diperbarui: 2026-03-28 | Versi: 1.2 (Security & Mitigation Patch)_
