@@ -10,7 +10,7 @@
 
 ## 📚 REFERENSI DOKUMEN (Otak Agen — Wajib Diketahui)
 
-Semua keputusan teknis didasarkan pada 18 dokumen berikut di folder `.agent/docs/`:
+Semua keputusan teknis didasarkan pada 19 dokumen berikut di folder `.agent/docs/`:
 
 | No  | File                                  | Isi Kunci                                                                    |
 | --- | ------------------------------------- | ---------------------------------------------------------------------------- |
@@ -32,6 +32,7 @@ Semua keputusan teknis didasarkan pada 18 dokumen berikut di folder `.agent/docs
 | 16  | `16_Manajemen_Struktur_Organisasi.md` | Hierarki jabatan PT/PN, filter dinamis posisi jabatan                        |
 | 17  | `17_Analisis_Kendala_Mitigasi.md`     | Bottlenecks: React Island Hydration, Type-Safety dinamis, Cache Invalidation |
 | 18  | `18_Arsitektur_Keamanan_Tinggi.md`    | Perisai Nginx, Dual JWT, Proteksi Web Shell (MIME bytes), SSRF               |
+| 19  | `19_Standar_Modularisasi_Kode.md`     | Larangan skrip raksasa (maks 300 baris), pemisahan skema Drizzle & Astro     |
 
 ---
 
@@ -354,13 +355,14 @@ pg-backup    → Auto backup harian 02:00 AM
   - `refactor:` → refaktor tanpa ubah fungsionalitas
   - `chore:` → konfigurasi/setup
 
-### Kode:
+### Kode & Modularisasi Mutlak:
 
-- Semua fungsi Elysia route wajib memiliki **JSDoc** params & return type
-- Semua React Island wajib memiliki **PropTypes via TypeBox schema**
-- Dilarang gambar PNG/JPG mentah di production → konversi ke **WebP** via `astro:assets`
-- Dilarang teks **"Lorem Ipsum"** atau placeholder data generik
-- Data simulasi WAJIB menggunakan contoh nyata hukum Indonesia
+- **Batas Panjang Skrip**: Dilarang meletakkan lebih dari ~300 baris kode logika pada satu file/komponen. Logika harus dipisah (_decoupling_) menjadi _Hooks_, _Services_, atau _Komponen Astro_ beralur tunggal. (Detail lihat `19_Standar_Modularisasi_Kode.md`)
+- Skema Drizzle ORM wajib dipecah menjadi per-domain (tidak diunggut dalam satu file `schema.ts`).
+- Semua fungsi Elysia route wajib memiliki **JSDoc** params & return type.
+- Semua React Island wajib memiliki **PropTypes via TypeBox schema** untuk menangkal beban render.
+- Dilarang gambar PNG/JPG mentah di production → konversi ke **WebP** via `astro:assets`.
+- Dilarang teks **"Lorem Ipsum"** atau placeholder data generik.
 
 ### Environment:
 
