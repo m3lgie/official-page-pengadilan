@@ -5,11 +5,13 @@
 <img src="https://img.shields.io/badge/License-Internal-gray?style=for-the-badge" />
 
 # 🏛️ Official Page Pengadilan
+
 ### Portal Resmi Pengadilan Tinggi & Pengadilan Negeri
+
 **Republik Indonesia — Mahkamah Agung**
 
-*Dibangun sesuai Keputusan Direktur Jenderal Badan Peradilan Umum*
-*Nomor: SK/DJU/127/HM1.1/III/2026*
+_Dibangun sesuai Keputusan Direktur Jenderal Badan Peradilan Umum_
+_Nomor: SK/DJU/127/HM1.1/III/2026_
 
 ---
 
@@ -52,26 +54,28 @@ Sistem ini dibangun dengan filosofi **"satu codebase, konfigurasi berbeda"** —
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-| Teknologi | Peran | Keunggulan |
-|---|---|---|
-| **Astro 5** | Frontend SSR/SSG | Zero-JS by default, Islands Architecture |
-| **Bun** | Runtime & Package Manager | 3-4x lebih cepat dari Node.js |
-| **ElysiaJS** | REST API Backend | Type-safe E2E, native Bun, ultra-fast |
-| **Drizzle ORM** | Database Query | Type-safe SQL, migrasi otomatis |
-| **PostgreSQL 15** | Database Utama | JSONB, Full-text Search |
-| **Redis 7** | Cache Layer | TTL cache, Auth password |
-| **Nginx** | Reverse Proxy | Rate limiting, SSL, static files |
+| Teknologi         | Peran                     | Keunggulan                                                            |
+| ----------------- | ------------------------- | --------------------------------------------------------------------- |
+| **Astro 5**       | Frontend SSR/SSG          | Zero-JS by default, Islands Architecture, View Transitions (SPA feel) |
+| **Bun**           | Runtime & Package Manager | 3-4x lebih cepat dari Node.js                                         |
+| **ElysiaJS**      | REST API Backend          | Type-safe E2E, native Bun, ultra-fast                                 |
+| **Drizzle ORM**   | Database Query            | Type-safe SQL, migrasi otomatis                                       |
+| **PostgreSQL 15** | Database Utama            | JSONB, Full-text Search                                               |
+| **Redis 7**       | Cache Layer               | TTL cache, Auth password                                              |
+| **Nginx**         | Reverse Proxy             | Rate limiting, SSL, static files                                      |
 
 ---
 
 ## 🎯 Fitur Utama
 
 ### 🏛️ Multi-Tenant (PT & PN)
+
 - Satu instalasi mendukung mode **Pengadilan Tinggi** atau **Pengadilan Negeri**
 - Identitas instansi (nama, logo, warna, URL layanan) dikelola via **Admin Panel**
 - Struktur menu Kepaniteraan menyesuaikan **kelas pengadilan** (`IA Khusus`, `IA`, `IB`, `II`) otomatis
 
 ### 📰 CMS & Konten
+
 - Editor berita **Rich Text** dengan workflow **Maker → Checker → Approver**
 - Manajemen **Kategori bertingkat** & **Tag** dengan autocomplete
 - **Revisi konten** tersimpan otomatis (riwayat lengkap)
@@ -79,6 +83,7 @@ Sistem ini dibangun dengan filosofi **"satu codebase, konfigurasi berbeda"** —
 - **Laporan Publik** multi-format: inline PDF viewer, download, preview card, embed link
 
 ### 🎨 Layout Dinamis
+
 - **Homepage Block-based**: drag & drop urutan widget tanpa coding
 - **Hero Slider**: manajemen banner dengan CTA dan swipe gesture mobile
 - **10 Tautan Cepat**: SIPP, e-Court, e-Berpadu, Direktori Putusan, dll
@@ -86,23 +91,27 @@ Sistem ini dibangun dengan filosofi **"satu codebase, konfigurasi berbeda"** —
 - **Navigation Builder**: menu bertingkat dengan visibilitas khusus PT/PN
 
 ### 🏗️ Struktur Organisasi Dinamis
+
 - Bagan organisasi visual (tree chart) berbeda antara PT dan PN
 - Jabatan kondisional berdasarkan kelas pengadilan (Tipikor, PHI, Niaga, Perikanan)
 - Riwayat jabatan pegawai + SK pengangkatan
 - Badge **Plt./Plh.** otomatis untuk pejabat sementara
 
 ### ⚖️ Reformasi Birokrasi
+
 - **Zona Integritas (ZI)**: Dashboard progress 6 Area (WBK/WBBM) + upload dokumen bukti
 - **AMPUH Badilum**: Ceklis 9 Kriteria penilaian resmi + upload evidence + verifikasi asesor
 - **Kegiatan RB**: Dokumentasi foto kegiatan reformasi birokrasi
 
 ### 👥 Layanan Masyarakat
+
 - **Login Masyarakat**: Registrasi mandiri dengan verifikasi OTP WhatsApp
 - **Tiket Pengaduan**: Tracking status real-time dengan riwayat balasan
 - **Form Builder**: Drag & drop pembuatan form survey (IKM, IPAK, Pengaduan)
 - **Layanan Disabilitas**: Video Juru Bahasa Isyarat untuk setiap jenis layanan PTSP
 
 ### 🔒 Keamanan & Infrastruktur
+
 - Password hashing dengan **Argon2** (bukan bcrypt/MD5)
 - **JWT terpisah** untuk Admin dan akun Masyarakat
 - **2FA wajib** untuk semua akun Admin
@@ -160,6 +169,7 @@ Internet
 ## 🚀 Instalasi (3 Langkah)
 
 ### Prasyarat
+
 - Docker v24+ & Docker Compose v2.20+
 - Ubuntu 20.04+ (atau distro Linux lainnya)
 - Port 80 dan 443 terbuka
@@ -193,7 +203,9 @@ PUBLIC_JWT_SECRET=   # generate: openssl rand -hex 32
 ```
 
 ### Setelah Deploy
+
 Buka `https://domain-anda.go.id/admin/pengaturan` dan konfigurasikan:
+
 - Mode PT/PN, kelas pengadilan, nama, logo, warna primer
 - URL SIPP, e-Court, e-Berpadu, SIWAS
 
@@ -217,12 +229,12 @@ official-page-pengadilan/
 ├── 📁 infra/
 │   ├── nginx/                     ← Konfigurasi Nginx
 │   └── docker/                    ← Dockerfiles
-└── 📁 .agent/docs/                ← 16 Dokumen Blueprint (Otak Agen)
+└── 📁 .agent/docs/                ← 18 Dokumen Blueprint (Otak Agen)
     ├── 01_Analisa_Juknis_2026.md
     ├── 13_Skema_Database_Drizzle.md
-    ├── 15_Responsive_Design.md
-    ├── 16_Manajemen_Struktur_Organisasi.md
-    └── ... (16 dokumen total)
+    ├── 17_Analisis_Kendala_Mitigasi.md
+    ├── 18_Arsitektur_Keamanan_Tinggi.md
+    └── ... (18 dokumen total)
 ```
 
 ---
@@ -231,15 +243,17 @@ official-page-pengadilan/
 
 Seluruh dokumentasi teknis tersimpan di folder `.agent/docs/`:
 
-| # | Dokumen | Keterangan |
-|---|---|---|
-| 01 | Analisa Juknis 2026 | Ketentuan SK DJU 127/2026 |
-| 03 | Frontend Astro | Page Map, React Islands, SEO |
-| 04 | Backend Elysia | Endpoint API, Middleware, Redis |
-| 13 | Skema Database | 14 Domain, 50+ Tabel Drizzle |
-| 14 | Standar Layout | Wireframe referensi visual |
-| 15 | Responsive Design | Breakpoint, Mobile-first |
-| 16 | Struktur Organisasi | Hierarki jabatan PT & PN dinamis |
+| #   | Dokumen             | Keterangan                       |
+| --- | ------------------- | -------------------------------- |
+| 01  | Analisa Juknis 2026 | Ketentuan SK DJU 127/2026        |
+| 03  | Frontend Astro      | Page Map, React Islands, SEO     |
+| 04  | Backend Elysia      | Endpoint API, Middleware, Redis  |
+| 13  | Skema Database      | 14 Domain, 50+ Tabel Drizzle     |
+| 14  | Standar Layout      | Wireframe referensi visual       |
+| 15  | Responsive Design   | Breakpoint, Mobile-first         |
+| 16  | Struktur Organisasi | Hierarki jabatan PT & PN dinamis |
+| 17  | Mitigasi Kendala    | Resolusi bottlenecks arsitektur  |
+| 18  | Arsitektur Keamanan | Proteksi Web Shell & Dual JWT    |
 
 ---
 
@@ -270,6 +284,7 @@ docker exec pengadilan_api bun run backup
 ## ♿ Aksesibilitas
 
 Sistem ini memenuhi standar **WCAG 2.1**:
+
 - ✅ Kontras warna minimum 4.5:1
 - ✅ Screen reader compatible (alt text, aria-label, semantik HTML)
 - ✅ Navigasi keyboard-only
@@ -281,13 +296,13 @@ Sistem ini memenuhi standar **WCAG 2.1**:
 
 ## 📜 Kepatuhan Regulasi
 
-| Regulasi | Status |
-|---|---|
-| SK DJU No. 127/DJU/SK.HM1.1/III/2026 | ✅ Diimplementasikan |
+| Regulasi                                             | Status               |
+| ---------------------------------------------------- | -------------------- |
+| SK DJU No. 127/DJU/SK.HM1.1/III/2026                 | ✅ Diimplementasikan |
 | SK KMA No. 2-144/KMA/SK/VIII/2022 (Informasi Publik) | ✅ Diimplementasikan |
-| UU No. 14 Tahun 2008 (Keterbukaan Informasi Publik) | ✅ Diimplementasikan |
-| WCAG 2.1 Aksesibilitas | ✅ Diimplementasikan |
-| PERMA tentang e-Litigasi & e-Berpadu | ✅ Diintegrasikan |
+| UU No. 14 Tahun 2008 (Keterbukaan Informasi Publik)  | ✅ Diimplementasikan |
+| WCAG 2.1 Aksesibilitas                               | ✅ Diimplementasikan |
+| PERMA tentang e-Litigasi & e-Berpadu                 | ✅ Diintegrasikan    |
 
 ---
 
@@ -316,6 +331,6 @@ chore:    → Setup & konfigurasi
 
 **Dibangun dengan ❤️ untuk pelayanan hukum yang lebih baik di Indonesia**
 
-*Mahkamah Agung Republik Indonesia — Direktorat Jenderal Badan Peradilan Umum*
+_Mahkamah Agung Republik Indonesia — Direktorat Jenderal Badan Peradilan Umum_
 
 </div>

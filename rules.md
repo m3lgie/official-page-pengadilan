@@ -110,6 +110,11 @@ BAHASA    : TypeScript STRICT mode di semua file .ts/.tsx/.astro
 
 > Referensi: `03_Frontend_Astro.md` dan `14_Standar_Layout_Template.md`
 
+### Arsitektur Routing (MPA + View Transitions):
+
+- **Bukan SPA Konvensional**: Kita menggunakan arsitektur hibrida MPA (Multi-Page App) yang dirender di server (SSR).
+- **Wajib View Transitions**: Fitur `<ViewTransitions />` Astro wajib dihidupkan untuk memastikan navigasi pergeseran halaman selembut SPA murni (tanpa berkedip ulang/_white-flash_), namun mempertahankan struktur mutlak keunggulan SEO asli dari HTML SSR.
+
 ### Struktur Layout (Wajib sesuai Wireframe Juknis):
 
 ```
